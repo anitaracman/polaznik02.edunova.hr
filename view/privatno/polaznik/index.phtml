@@ -1,0 +1,46 @@
+hej
+
+
+<html>
+<body>
+
+<h2>Polaznik PHP-a</h2>
+<img src="https://media.giphy.com/media/3ohs7KViF6rA4aan5u/giphy.gif" alt="Ćaooo" width="460" height="345">
+
+
+
+
+</body>
+</html>
+
+
+
+
+<?php
+$servername = "polaznik02.edunova.hr";
+$username = "edunova";
+$password = "edunova";
+
+$dbname = "edunovapp20";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT sifra, osoba, brojugovora FROM polaznik";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "<br> Šifra: ". $row["sifra"]. " - Ime: ". $row["osoba"]. " " . $row["brojugovora"] . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
